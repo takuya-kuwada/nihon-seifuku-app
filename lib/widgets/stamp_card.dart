@@ -193,6 +193,7 @@ class _UnlockedCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final assetName = info.englishName.toLowerCase();
     return Container(
       decoration: BoxDecoration(
         gradient: const LinearGradient(
@@ -228,7 +229,7 @@ class _UnlockedCard extends StatelessWidget {
               englishName: info.englishName,
               cardNum: cardNum,
             ),
-            Expanded(child: _CardArt(emoji: emoji, color: color)),
+            Expanded(child: _CardArt(emoji: emoji, color: color, assetName: assetName)),
             _CardInfo(
               specialty: info.specialty,
               specialMove: info.specialMove,
@@ -309,17 +310,15 @@ class _CardHeader extends StatelessWidget {
 class _CardArt extends StatelessWidget {
   final String emoji;
   final Color color;
-  const _CardArt({required this.emoji, required this.color});
+  final String assetName;
+  const _CardArt({required this.emoji, required this.color, required this.assetName});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [
-            color.withValues(alpha: 0.75),
-            color,
-          ],
+          colors: [color.withValues(alpha: 0.75), color],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
@@ -328,11 +327,9 @@ class _CardArt extends StatelessWidget {
         alignment: Alignment.center,
         children: [
           Positioned(
-            top: -8,
-            left: -8,
+            top: -8, left: -8,
             child: Container(
-              width: 44,
-              height: 44,
+              width: 44, height: 44,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: Colors.white.withValues(alpha: 0.08),
@@ -340,30 +337,25 @@ class _CardArt extends StatelessWidget {
             ),
           ),
           Positioned(
-            bottom: -10,
-            right: -10,
+            bottom: -10, right: -10,
             child: Container(
-              width: 56,
-              height: 56,
+              width: 56, height: 56,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: Colors.white.withValues(alpha: 0.06),
               ),
             ),
           ),
-          Positioned(
-            top: 4,
-            right: 4,
-            child: Container(
-              width: 20,
-              height: 20,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.white.withValues(alpha: 0.07),
+          // 画像があれば表示、なければ絵文字フォールバック
+          Positioned.fill(
+            child: Image.asset(
+              'assets/cards/$assetName.png',
+              fit: BoxFit.contain,
+              errorBuilder: (_, __, ___) => Center(
+                child: Text(emoji, style: const TextStyle(fontSize: 38)),
               ),
             ),
           ),
-          Text(emoji, style: const TextStyle(fontSize: 38)),
         ],
       ),
     );
