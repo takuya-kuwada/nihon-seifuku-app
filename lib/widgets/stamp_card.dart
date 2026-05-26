@@ -198,7 +198,7 @@ class PrefectureStampCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(6),
               ),
               child: Text(
-                '$visitedCount市区町村',
+                '$visitedCount市区町村 訪問',
                 style: GoogleFonts.notoSerif(
                   fontSize: 9,
                   color: isUnlocked ? Colors.white70 : Colors.white24,

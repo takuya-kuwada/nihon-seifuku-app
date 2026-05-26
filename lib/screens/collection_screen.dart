@@ -95,7 +95,7 @@ class _CollectionScreenState extends State<CollectionScreen>
                     fontWeight: FontWeight.w700, fontSize: 13),
                 tabs: [
                   Tab(text: '市区町村 ${_municipalityStamps.length}'),
-                  Tab(text: '都道府県 ${_prefCounts.length}/47'),
+                  Tab(text: '都道府県スタンプ ${_prefCounts.length}/47'),
                 ],
               ),
             ),

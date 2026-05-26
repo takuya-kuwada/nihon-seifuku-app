@@ -150,7 +150,7 @@ class _SummaryCard extends StatelessWidget {
             children: [
               _BigStat(
                   value: '$totalVisited',
-                  label: '市区町村制覇',
+                  label: '市区町村 足跡',
                   emoji: '📍'),
               Container(
                   width: 1,
@@ -158,14 +158,14 @@ class _SummaryCard extends StatelessWidget {
                   color: Colors.white12),
               _BigStat(
                   value: '$prefVisited/47',
-                  label: '都道府県制覇',
+                  label: '都道府県 訪問',
                   emoji: '🏯'),
             ],
           ),
           const SizedBox(height: 16),
           Row(
             children: [
-              Text('全国制覇度',
+              Text('都道府県 到達率',
                   style: GoogleFonts.notoSerif(
                       fontSize: 12, color: Colors.white70)),
               const Spacer(),
@@ -227,11 +227,11 @@ class _RankBadge extends StatelessWidget {
 
   static const _ranks = [
     (0, '🌱', '旅立ちの冒険者', '旅を始めたばかり'),
-    (5, '🗺️', '地図収集家', '5都道府県制覇'),
-    (10, '⛩️', '街道を行く者', '10都道府県制覇'),
-    (20, '🏔️', '風来坊', '20都道府県制覇'),
-    (35, '🦅', '日本一周者', '35都道府県制覇'),
-    (47, '👑', '全国制覇！', '日本完全制覇'),
+    (5, '🗺️', '地図収集家', '5都道府県に足跡あり'),
+    (10, '⛩️', '街道を行く者', '10都道府県に足跡あり'),
+    (20, '🏔️', '風来坊', '20都道府県に足跡あり'),
+    (35, '🦅', '日本一周者', '35都道府県に足跡あり'),
+    (47, '👑', '全国制覇！', '47都道府県すべてに到達'),
   ];
 
   @override
@@ -344,7 +344,7 @@ class _PrefectureRow extends StatelessWidget {
               borderRadius: BorderRadius.circular(8),
             ),
             child: Text(
-              visited ? '$count市区町村' : '未訪問',
+              visited ? '$count市区町村 訪問' : '未訪問',
               style: GoogleFonts.notoSerif(
                   fontSize: 10,
                   fontWeight: FontWeight.w600,
