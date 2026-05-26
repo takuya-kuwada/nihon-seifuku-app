@@ -6,7 +6,8 @@ import '../data/prefecture_data.dart';
 import '../widgets/stamp_card.dart';
 
 class CollectionScreen extends StatefulWidget {
-  const CollectionScreen({super.key});
+  const CollectionScreen({super.key, this.refreshTrigger = 0});
+  final int refreshTrigger;
 
   @override
   State<CollectionScreen> createState() => _CollectionScreenState();
@@ -26,6 +27,12 @@ class _CollectionScreenState extends State<CollectionScreen>
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
     _load();
+  }
+
+  @override
+  void didUpdateWidget(CollectionScreen oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.refreshTrigger != oldWidget.refreshTrigger) _load();
   }
 
   @override

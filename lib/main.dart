@@ -44,20 +44,28 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
+  int _collectionRefresh = 0;
+  int _progressRefresh = 0;
 
-  static const _screens = [
-    MapScreen(),
-    CollectionScreen(),
-    StepScreen(),
-    ProgressScreen(),
-  ];
+  void _onTap(int i) {
+    if (i == 1) _collectionRefresh++;
+    if (i == 3) _progressRefresh++;
+    setState(() => _currentIndex = i);
+  }
 
   @override
   Widget build(BuildContext context) {
+    final screens = [
+      const MapScreen(),
+      CollectionScreen(refreshTrigger: _collectionRefresh),
+      const StepScreen(),
+      ProgressScreen(refreshTrigger: _progressRefresh),
+    ];
+
     return Scaffold(
       body: IndexedStack(
         index: _currentIndex,
-        children: _screens,
+        children: screens,
       ),
       bottomNavigationBar: Container(
         decoration: const BoxDecoration(
@@ -65,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         child: BottomNavigationBar(
           currentIndex: _currentIndex,
-          onTap: (i) => setState(() => _currentIndex = i),
+          onTap: _onTap,
           type: BottomNavigationBarType.fixed,
           backgroundColor: const Color(0xFF0F1923),
           selectedItemColor: const Color(0xFFFFB300),

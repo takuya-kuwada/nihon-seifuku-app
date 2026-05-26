@@ -4,7 +4,8 @@ import '../services/database_service.dart';
 import '../data/prefecture_data.dart';
 
 class ProgressScreen extends StatefulWidget {
-  const ProgressScreen({super.key});
+  const ProgressScreen({super.key, this.refreshTrigger = 0});
+  final int refreshTrigger;
 
   @override
   State<ProgressScreen> createState() => _ProgressScreenState();
@@ -21,6 +22,12 @@ class _ProgressScreenState extends State<ProgressScreen> {
   void initState() {
     super.initState();
     _load();
+  }
+
+  @override
+  void didUpdateWidget(ProgressScreen oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.refreshTrigger != oldWidget.refreshTrigger) _load();
   }
 
   Future<void> _load() async {
